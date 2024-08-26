@@ -35,7 +35,7 @@ class AuthController extends Controller
         if(!$user || !Hash::check($data['password'], $user->password)){
             return response()->json([
                 'message' => 'Email or Password is Incorrect'
-            ]);
+            ],400);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
         $cookie = cookie('token',$token,60*24);

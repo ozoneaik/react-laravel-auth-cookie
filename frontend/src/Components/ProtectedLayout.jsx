@@ -12,11 +12,13 @@ function ProtectedLayout() {
                 const resp = await axiosClient.get('/user');
                 if (resp.status === 200) {
                     setUser(resp.data.user);
+                }else{
+                    window.location.href="/login";
                 }
             }catch(error){
                 if (error.response.status === 401){
                     localStorage.removeItem('user');
-                    window.location.href="/";
+                    window.location.href="/login";
                 }
             }
         })()
